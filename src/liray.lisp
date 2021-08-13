@@ -219,7 +219,7 @@
             (get-alist-value server :delay))))
 
 (clish:defcli cache
-    ("show"
+    (show
      (lambda (&optional key)
        (if key
         (format t "~a:~%~A~%" key (cdr (assoc (intern (string-upcase key) :keyword) *cache*)))
@@ -241,11 +241,12 @@
     :force-shell nil))
 
 (clish:defcli cli
-  ("cache" #'cache)
-  ("sub" #'subscribe)
-  ("test" #'test-servers)
-  ("list" #'list-servers)
-  ("start" #'start-v2ray))
+  (cache #'cache)
+  (sub #'subscribe)
+  (test #'test-servers)
+  (list #'list-servers)
+  (start #'start-v2ray))
+  ;; (:pre (lambda (command args) (load-cache))))
 
 (load-cache)
 
